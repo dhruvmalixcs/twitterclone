@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      function showEmp() {
+        
+        // var empId = document.getElementById("empid").value;
+        console.log(emps);
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="#">
+      EmpId 
+      <input type="text" name="empid" id="empid">
+      <button onclick="showEmp()">Find Employee</button>
+      <button onclick="showAllEmp()">show all Employee</button>
+    </form>
+
+    <div  id="empdata"></div>
+    <ol id="allEmp">
+
+    </ol>
+
+    <script>
+      function showEmp() {
+        event.preventDefault();
+        let textEl = document.getElementById("empid");
+        let empid = textEl.value;
+        let url = "/employee/" +empid;
+        fetch(url).then(res=> res.json())
+        .then(res =>{
+          let pEl = document.getElementById("empdata");
+          pEl.innerHTML = JSON.stringify(res);
+        });
+      }
+      function showAllEmp() {
+        event.preventDefault();
+        let url = "/employee/";
+        fetch(url).then(res=> res.json())
+        .then(res =>{
+          let str="";
+          for(let el of res){
+            str+="<li>"+JSON.stringify(el) +"</li>";
+          }
+          let pEl = document.getElementById("allEmp");
+          pEl.innerHTML = str;
+        });
+      }
+
+    </script>
+  </body>
+</html>
