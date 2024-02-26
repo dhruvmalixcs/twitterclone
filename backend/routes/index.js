@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const bcrypt = require('bcrypt');
 const {checkLogin} = require("../service/userService");
 // down 2  lines done in lecture 3;
 const db=require('../models');
@@ -132,6 +133,47 @@ router.get('/createAccount', function(req, res, next) {
 //       res.render("createAccount", { message: "Error creating account." });
 //   }
 // });
+router.post("/create", async(req,res,next)=>{
+
+  //spread operator - didnt worked here
+  //const user = {...req.body};
+
+  const user = req.body;
+  const password = user.password;
+
+  
+  const hashedPassword = await bcrypt.hash(password,10);
+  const newUser = {
+    username: user.username,
+    hashed_password: hashedPassword,
+    gender: user.gender,
+    mobile: user.mobile,
+    email: user.email,
+    picture: user.picture,
+    profile_text: user.profiletext
+  };
+
+  const userSaved = await db.users.create(newUser);
+  res.render('index', {message: 'Account created successfully'});
+})
+
+router.post('/checkAvailability', async (req, res) => {
+  const requestedUsername = req.body.username;
+
+  try {
+      const user = await db.users.findOne({ where: { username: requestedUsername } });
+
+      // Check if the username is available
+      if (user !== null) {
+          res.json({ available: false });
+      } else {
+          res.json({ available: true });
+      }
+  } catch (error) {
+      console.error("Error fetching user data:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 
 router.get("/usertext", async function(req,res,next){

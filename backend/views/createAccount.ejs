@@ -6,14 +6,55 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/createAccount" method="post">
-        username <input type="text" name="username" id="username" /> <br>
-        password <input type="password" name="password" id="password" /> <br>
-        Confirm password <input type="password" name="confirmpassword" id="confirmpassword" /> <br>
-        Email <input type="text" name="email" id="email" />
+    <form action="/create" method="post">
+        Username: <input required type="text" name="username" placeholder="Username" id="username"> 
+        <button onclick="checkAvl()">check Availibility</button>
+        <div id="avlmessages"></div>
+        Password: <input required type="password" name="password" placeholder="Password" id="password"> <br/>
+        Gender: <input checked required type="radio" name="gender"  value='M' id="male">
+        <label for="male">Male</label>
+        <input required type="radio" name="gender" value="F" id="female">
+        <label for="female">Female</label>
 
-        <button>Create User</button>
+        <br/> 
 
+        Mobile: <input type="text" name="mobile" placeholder="Mobile" id="mobile"> <br/>
+        Email: <input type="text" name="email" placeholder="Email" id="email"> <br/>
+        Picture: <input type="file" id="pictureinput" name="picture" accept="image/*"> <br/>
+
+        <label for="profiletext">Twitter bio: </label>
+        <textarea id="profiletext" name="profiletext" rows="5" cols="50" style="vertical-align: top;"></textarea>
+
+        <br/>
+
+        <input type="submit" value="Create account">
     </form>
+
+    <script>
+        function checkAvl() {  
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            
+            fetch('/checkAvailability', {
+                method: 'POST', // Corrected 'post' to 'POST'
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(res => res.json())
+            .then(res => {
+                let msgel = document.getElementById("avlmessages");
+                
+                if (res.available) {
+                    msgel.innerHTML = "Username is available";
+                } else {
+                    msgel.innerHTML = "Username is not available";
+                }
+            })
+
+        }
+    </script>
+    
 </body>
 </html>
