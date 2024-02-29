@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/create" method="post">
+    <form action="/create" method="post"  enctype="multipart/form-data">
         Username: <input required type="text" name="username" placeholder="Username" id="username"> 
         <button onclick="checkAvl()">check Availibility</button>
         <div id="avlmessages"></div>

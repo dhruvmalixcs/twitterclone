@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 const {checkLogin} = require("../service/userService");
+const multer = require('multer');
+const uploader = multer({dest : 'uploads'});
 // down 2  lines done in lecture 3;
 const db=require('../models');
-db.employee.sync();
+db.sequelize.sync();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -64,10 +66,11 @@ router.post('/home',async function(req,res,next){
   if (userLoggedIn) {
     // Store the username in the session
     req.session.username = username;
+    req.session.userid = userLoggedIn.userid;
     console.log("send to home page");
 
     // Render the home page with any necessary data
-    res.render("home", { username: username }); // Passing username to home.ejs
+    res.render("home", { username: username ,picture : userLoggedIn.pic}); // Passing username to home.ejs
   }
   // else if failed login, render index.ejs with error message
   // else redirect to home page
@@ -133,24 +136,25 @@ router.get('/createAccount', function(req, res, next) {
 //       res.render("createAccount", { message: "Error creating account." });
 //   }
 // });
-router.post("/create", async(req,res,next)=>{
+router.post("/create",uploader.single("picture"), async(req,res,next)=>{
 
   //spread operator - didnt worked here
   //const user = {...req.body};
 
   const user = req.body;
+  user.picture = req.file.path;
   const password = user.password;
 
   
   const hashedPassword = await bcrypt.hash(password,10);
   const newUser = {
     username: user.username,
-    hashed_password: hashedPassword,
+    passwordhash: hashedPassword,
     gender: user.gender,
     mobile: user.mobile,
     email: user.email,
-    picture: user.picture,
-    profile_text: user.profiletext
+    pic: user.picture,
+    profiletext: user.profiletext
   };
 
   const userSaved = await db.users.create(newUser);
@@ -175,6 +179,15 @@ router.post('/checkAvailability', async (req, res) => {
   }
 });
 
+
+router.post("/tweet",async(req,res,next)=>{   //=> lambda expression
+  let twRecv = {...req.body};
+  
+  twRecv.userid = req.session.userid;
+  console.log("twRecv",twRecv);
+  let tweet = await db.tweet.create(twRecv);
+  res.json({tweet})
+})
 
 router.get("/usertext", async function(req,res,next){
   let users = await db.users.findAll({});

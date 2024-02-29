@@ -7,7 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>welcome to twitter <%= username %></h1>
+    <h1>Welcome to Twitter <%=username %></h1>
+    <img src="<%= picture %>" alt="user-image" style="height: 400px; width: 380px;"><br/>
+    Write your tweet here : <br/><br/>
+
+    <form action="/tweet" method="POST">
+        <input type="text" name="twtext" id="twtext" placeholder="Write here">
+        <input type="submit" value="Post Here">
+    </form>
+    
     <div><a href="/logout">Logout</a></div>
 </body>
 </html>
