@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update account</title>
+    <!-- Linking Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-8">
+        <form id="updateform" action="/users/update" method="post" enctype="multipart/form-data"
+            class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Update Account</h2>
+            <div class="mb-4">
+                <label for="password" class="block mb-2">Password:</label>
+                <input type="password" name="password" placeholder="Password" id="password"
+                    class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2">Gender:</label>
+                <input checked type="radio" name="gender" value='M' id="male"
+                    class="mr-2 leading-tight">
+                <label for="male" class="mr-4">Male</label>
+                <input required type="radio" name="gender" value="F" id="female"
+                    class="mr-2 leading-tight">
+                <label for="female">Female</label>
+            </div>
+            <div class="mb-4">
+                <label for="mobile" class="block mb-2">Mobile:</label>
+                <input type="text" name="mobile" placeholder="Mobile" id="mobile"
+                    class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block mb-2">Email:</label>
+                <input type="text" name="email" placeholder="Email" id="email"
+                    class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="pictureinput" class="block mb-2">Picture:</label>
+                <input type="file" id="pictureinput" name="picture"
+                    class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="profiletext" class="block mb-2">Twitter bio:</label>
+                <textarea id="profiletext" name="profiletext" rows="3" cols="50"
+                    class="w-full px-3 py-2 border rounded-md"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Update info"
+                    class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

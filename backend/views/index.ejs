@@ -1,23 +1,54 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>X</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    
-    <h1>Twitter Login</h1>
-    
-    <form action="/home" method="post">
-      username <input type="text" name="username" id="username" /> password
-      <input type="password" name="password" id="password" />
-      <button>Login</button>
-    </form>
-    <a href="/createAccount">Create Account</a>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Additional CSS styles */
+    body {
+      font-family: Arial, sans-serif; /* Changing default font to sans-serif */
+    }
+    .form-container {
+      margin-top: 50px; /* Adjusting margin for form */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 20px;
+    }
+    .input-field {
+      margin-bottom: 10px; /* Adjusting margin between input fields */
+    }
+    .login-button {
+      margin-top: 10px; /* Adjusting margin for login button */
+    }
+    .create-account-link {
+      margin-top: 20px; /* Adjusting margin for create account link */
+    }
+  </style>
+</head>
+<body class="bg-blue-50">
 
+  <h1 class="bg-blue-500 text-white py-4 text-center">Twitter Login</h1>
 
+  <form action="/home" method="post" class="form-container">
+    <div class="input-field">
+      <label for="username" class="sr-only">Username</label>
+      <input type="text" name="username" id="username" class="p-2 border border-gray-300 rounded-l" placeholder="Username">
+    </div>
+    <div class="input-field">
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" name="password" id="password" class="p-2 border border-gray-300 rounded-l" placeholder="Password">
+    </div>
+    <button type="submit" class="login-button bg-blue-500 text-white px-4 py-2 rounded-r">Login</button>
+  </form>
 
-  </body>
+  <div class="create-account-link text-center">
+    <a href="/createAccount" class="text-blue-500">Create Account</a>
+  </div>
+
+</body>
 </html>
-

@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/create" method="post"  enctype="multipart/form-data">
+    <form id="Rform" action="/create" method="post"  enctype="multipart/form-data">
         Username: <input required type="text" name="username" placeholder="Username" id="username"> 
         <button onclick="checkAvl()">check Availibility</button>
         <div id="avlmessages"></div>
@@ -31,12 +31,16 @@
     </form>
 
     <script>
+        document.getElementById("Rform").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            checkAvl(); // Check username availability
+        });
+
         function checkAvl() {  
-            event.preventDefault();
             let username = document.getElementById("username").value;
             
             fetch('/checkAvailability', {
-                method: 'POST', // Corrected 'post' to 'POST'
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -47,12 +51,13 @@
                 let msgel = document.getElementById("avlmessages");
                 
                 if (res.available) {
-                    msgel.innerHTML = "Username is available";
+                    // Username is available, submit the form
+                    document.getElementById("Rform").submit();
                 } else {
-                    msgel.innerHTML = "Username is not available";
+                    // Username is not available, show alert
+                    alert("Username is not available");
                 }
-            })
-
+            });
         }
     </script>
     

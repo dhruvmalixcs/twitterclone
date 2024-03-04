@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Twitter Page</title>
 </head>
-<body>
-    <h1>Welcome to Twitter <%=username %></h1>
-    <img src="<%= picture %>" alt="user-image" style="height: 400px; width: 380px;"><br/>
-    Write your tweet here : <br/><br/>
+<body class="bg-blue-50 font-sans">
 
-    <form action="/tweet" method="POST">
-        <input type="text" name="twtext" id="twtext" placeholder="Write here">
-        <input type="submit" value="Post Here">
+    <header class="bg-blue-500 text-white py-4 text-center">
+        <h1 class="text-2xl font-bold">Welcome to Twitter <%=username %></h1>
+    </header>
+
+    <img src="<%= picture %>" alt="user-image" class="rounded-full h-32 w-32 mt-4 mx-auto">
+
+    <form action="/tweet" method="POST" class="mt-6 flex items-center justify-center">
+        <input type="text" name="twtext" id="twtext" placeholder="What's happening?" class="p-2 border border-gray-300 rounded-l">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r">Tweet</button>
     </form>
-    
-    <div><a href="/logout">Logout</a></div>
+
+    <div class="mt-8 text-center">
+        <a href="users/update" class="text-blue-500">Update account</a>
+        <a href="/logout" class="text-blue-500">Logout</a>
+    </div>
+
 </body>
 </html>
