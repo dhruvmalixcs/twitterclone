@@ -6,51 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update account</title>
     <!-- Linking Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-black text-white bg-zinc-800 " style="font-family: Roboto Mono;">
+    <header class="mx-auto my-10 mb-8 flex justify-center text-red-700 text-7xl font-bold">twix</header>
     <div class="container mx-auto mt-8">
         <form id="updateform" action="/users/update" method="post" enctype="multipart/form-data"
-            class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Update Account</h2>
-            <div class="mb-4">
-                <label for="password" class="block mb-2">Password:</label>
+            class="max-w-md mx-auto bg-zinc-900 p-8 rounded-lg border-4 border-red-500 flex flex-col gap-4">
+            <h2 class="text-2xl font-bold text-center mb-2">Update Account</h2>
+            <div class="flex items-center">
+                <label for="password" class="block w-1/3 mb-2 text-white">Password:</label>
                 <input type="password" name="password" placeholder="Password" id="password"
-                    class="w-full px-3 py-2 border rounded-md">
+                    class="w-full px-3 py-2 border rounded-md bg-zinc-600 text-white">
             </div>
-            <div class="mb-4">
-                <label class="block mb-2">Gender:</label>
-                <input checked type="radio" name="gender" value='M' id="male"
-                    class="mr-2 leading-tight">
-                <label for="male" class="mr-4">Male</label>
-                <input required type="radio" name="gender" value="F" id="female"
-                    class="mr-2 leading-tight">
-                <label for="female">Female</label>
+            <div class="flex items-center">
+                <label class="block w-1/3 mb-2 text-white">Gender:</label>
+                <div class="flex items-center">
+                    <input checked type="radio" name="gender" value='M' id="male"
+                        class="mr-2 leading-tight">
+                    <label for="male" class="mr-4 text-white">Male</label>
+                    <input required type="radio" name="gender" value="F" id="female"
+                        class="mr-2 leading-tight">
+                    <label for="female" class="text-white">Female</label>
+                </div>
             </div>
-            <div class="mb-4">
-                <label for="mobile" class="block mb-2">Mobile:</label>
+            <div class="flex items-center">
+                <label for="mobile" class="block w-1/3 mb-2 text-white">Mobile:</label>
                 <input type="text" name="mobile" placeholder="Mobile" id="mobile"
-                    class="w-full px-3 py-2 border rounded-md">
+                    class="w-full px-3 py-2 border rounded-md bg-zinc-600 text-white">
             </div>
-            <div class="mb-4">
-                <label for="email" class="block mb-2">Email:</label>
+            <div class="flex items-center">
+                <label for="email" class="block w-1/3 mb-2 text-white">Email:</label>
                 <input type="text" name="email" placeholder="Email" id="email"
-                    class="w-full px-3 py-2 border rounded-md">
+                    class="w-full px-3 py-2 border rounded-md bg-zinc-600 text-white">
             </div>
-            <div class="mb-4">
-                <label for="pictureinput" class="block mb-2">Picture:</label>
+            <div class="flex items-center">
+                <label for="pictureinput" class="block w-1/3 mb-2 text-white">Picture:</label>
                 <input type="file" id="pictureinput" name="picture"
-                    class="w-full px-3 py-2 border rounded-md">
+                    class="w-full px-3 py-2 border rounded-md bg-zinc-600 text-white">
             </div>
-            <div class="mb-4">
-                <label for="profiletext" class="block mb-2">Twitter bio:</label>
+            <div class="flex items-center">
+                <label for="profiletext" class="block w-1/3 mb-2 text-white">Twitter bio:</label>
                 <textarea id="profiletext" name="profiletext" rows="3" cols="50"
-                    class="w-full px-3 py-2 border rounded-md"></textarea>
+                    class="w-full px-3 py-2 border rounded-md bg-zinc-600 text-white"></textarea>
             </div>
-            <div>
+            <div class="flex justify-center">
                 <input type="submit" value="Update info"
-                    class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    class="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
             </div>
         </form>
     </div>

@@ -1,4 +1,4 @@
-const user = require("./Users");
+// const user = require("./Users");
 module.exports = (sequelize,DataTypes)=>{
     const tweet = sequelize.define("tweet",{
         twid:{

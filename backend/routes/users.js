@@ -21,14 +21,10 @@ router.post('/update', uploader.single('picture'), async(req,res,next) => {
 
   const user = await database.users.findOne({where: {userid: userid}});
 
-  if(!user){
-    res.json({message: `user with ${userid} doesn't exist`});
-    return;
-  }
-  details.picture=req.file.path;
+  // details.picture=req.file.path;
   if(details.password !== undefined && details.password !== ""){
     const hashedPassword = await bcrypt.hash(details.password,10);
-    user.hashedpassword = hashedPassword;
+    user.passwordhash = hashedPassword;
   }
 
   if(details.gender !== undefined && details.gender !== "")
@@ -37,8 +33,11 @@ router.post('/update', uploader.single('picture'), async(req,res,next) => {
     user.mobile = details.mobile;
   if(details.email!== undefined && details.email !== "")
     user.email = details.email;
-  if(details.picture !== undefined && details.picture !== "")
-    user.pic = details.picture;
+  // if(details.picture !== undefined && details.picture !== "")
+  // {
+    
+  // }
+  if(req.file && req.file.path) user.pic =req.file.path;
   if(details.profiletext !== undefined && details.profiletext !== "")
     user.profiletext = details.profiletext;
 

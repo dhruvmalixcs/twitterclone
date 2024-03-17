@@ -67,6 +67,8 @@ router.post('/home',async function(req,res,next){
     // Store the username in the session
     req.session.username = username;
     req.session.userid = userLoggedIn.userid;
+    req.session.pic = userLoggedIn.pic;
+
     console.log("send to home page");
 
     // Render the home page with any necessary data
@@ -76,7 +78,7 @@ router.post('/home',async function(req,res,next){
   // else redirect to home page
   else {
     // res.redirect("/"); // back to home page
-    res.render("index", { message: "Password is not correct." });
+    res.render("index", {errorMessage:"username or password is incorrect"});
   }
   
 
@@ -186,7 +188,11 @@ router.post("/tweet",async(req,res,next)=>{   //=> lambda expression
   twRecv.userid = req.session.userid;
   console.log("twRecv",twRecv);
   let tweet = await db.tweet.create(twRecv);
-  res.json({tweet})
+  // if(tweet) alert("tweet success");
+  let username = req.session.username;
+  res.render("home", { username: username ,picture : req.session.pic}); // Passing username to home.ejs
+  
+
 })
 
 router.get("/usertext", async function(req,res,next){

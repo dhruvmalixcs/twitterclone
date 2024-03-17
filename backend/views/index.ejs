@@ -4,51 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    /* Additional CSS styles */
-    body {
-      font-family: Arial, sans-serif; /* Changing default font to sans-serif */
-    }
-    .form-container {
-      margin-top: 50px; /* Adjusting margin for form */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      margin: 20px;
-    }
-    .input-field {
-      margin-bottom: 10px; /* Adjusting margin between input fields */
-    }
-    .login-button {
-      margin-top: 10px; /* Adjusting margin for login button */
-    }
-    .create-account-link {
-      margin-top: 20px; /* Adjusting margin for create account link */
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-blue-50">
+<body class="bg-black text-white bg-zinc-800 font-sans" style="font-family: Roboto Mono;">
 
-  <h1 class="bg-blue-500 text-white py-4 text-center">Twitter Login</h1>
+  <header class="mx-auto my-10 mb-8 flex justify-center text-red-700 text-7xl font-bold">twix</header>
 
-  <form action="/home" method="post" class="form-container">
-    <div class="input-field">
-      <label for="username" class="sr-only">Username</label>
-      <input type="text" name="username" id="username" class="p-2 border border-gray-300 rounded-l" placeholder="Username">
+
+  <form action="/home" method="post" class="max-w-md mx-auto bg-zinc-900 p-8 rounded-lg border-4 border-red-500">
+  <h1 class="text-white py-4 text-center text-2xl font-bold">twix Login</h1>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="input-field col-span-2">
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" name="username" id="username" class="w-full p-2 border border-gray-300 rounded bg-zinc-600 text-white" placeholder="Username">
+      </div>
+      <div class="input-field col-span-2">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="w-full p-2 border border-gray-300 rounded bg-zinc-600 text-white" placeholder="Password">
+      </div>
+      <div class="col-span-2">
+        <button type="submit" class="login-button w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Login</button>
+      </div>
+      
+      <div class="col-span-2">
+        <a href="/createAccount" class="w-full bg-red-500 text-white px-4 py-2 block text-center rounded hover:bg-red-600">Create Account</a>
+      </div>
     </div>
-    <div class="input-field">
-      <label for="password" class="sr-only">Password</label>
-      <input type="password" name="password" id="password" class="p-2 border border-gray-300 rounded-l" placeholder="Password">
-    </div>
-    <button type="submit" class="login-button bg-blue-500 text-white px-4 py-2 rounded-r">Login</button>
+  
   </form>
 
-  <div class="create-account-link text-center">
-    <a href="/createAccount" class="text-blue-500">Create Account</a>
-  </div>
+  
 
 </body>
 </html>

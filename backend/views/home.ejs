@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <title>Twitter Page</title>
 </head>
-<body class="bg-blue-50 font-sans">
+<body class="bg-black text-white bg-zinc-800 font-sans" style="font-family: Roboto Mono;">
+    <header class="mx-auto my-10 mb-8 flex justify-center text-red-700 text-7xl font-bold">twix</header>
 
-    <header class="bg-blue-500 text-white py-4 text-center">
-        <h1 class="text-2xl font-bold">Welcome to Twitter <%=username %></h1>
-    </header>
+    <form action="/tweet" method="POST" class="max-w-md mx-auto bg-zinc-900 p-8 rounded-lg border-4 border-red-500 flex flex-col gap-4">
+        <header class="text-center">
+            <h1 class="text-2xl font-bold">Welcome to twix <%=username %></h1>
+        </header>
 
-    <img src="<%= picture %>" alt="user-image" class="rounded-full h-32 w-32 mt-4 mx-auto">
+        <img src="<%= picture %>" alt="user-image" class="rounded-full h-40 w-40 mt-4 mx-auto">
 
-    <form action="/tweet" method="POST" class="mt-6 flex items-center justify-center">
-        <input type="text" name="twtext" id="twtext" placeholder="What's happening?" class="p-2 border border-gray-300 rounded-l">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r">Tweet</button>
+        <div class="flex items-center justify-center mt-6">
+            <input type="text" name="twtext" id="twtext" placeholder="What's happening?" class="p-2 border border-gray-300 rounded-l bg-zinc-600 text-white flex-grow">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-r hover:bg-red-600">Tweet</button>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <a href="/users/update" class="bg-red-500 text-white px-4 py-2 rounded-r hover:bg-red-600">Update account</a>
+            <a href="/logout" class="bg-red-500 text-white px-4 py-2 rounded-r hover:bg-red-600">Logout</a>
+        </div>
     </form>
-
-    <div class="mt-8 text-center">
-        <a href="users/update" class="text-blue-500">Update account</a>
-        <a href="/logout" class="text-blue-500">Logout</a>
-    </div>
 
 </body>
 </html>
